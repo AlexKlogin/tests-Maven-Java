@@ -23,7 +23,7 @@ public class SuiteBase {
 	Logger logger = Logger.getLogger(this.getClass());
 	  //To hide java warnings logs from execution console.
 	java.util.logging.Logger javaLogger = java.util.logging.Logger.getLogger("");
-	String basicURL= "http://only-testing-blog.blogspot.com/"; 
+	static String basicURL= "http://only-testing-blog.blogspot.com/"; 
 	
 	@BeforeClass
 	public void init() throws IOException{
@@ -43,13 +43,13 @@ public class SuiteBase {
 			
 		}else if(Param.getProperty("testBrowser").equalsIgnoreCase("Chrome")){
 			//To Load Chrome driver Instance.
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+Param.getProperty("chromedriver"));
+			System.setProperty("webdriver.chrome.driver", Param.getProperty("chromedriver"));
 			driver = new ChromeDriver();
 			logger.info("Chrome Driver Instance loaded successfully.");
 			
 		}else if(Param.getProperty("testBrowser").equalsIgnoreCase("IE")){
 			//To Load IE driver Instance.
-			System.setProperty("webdriver.edge.driver", System.getProperty("user.dir")+Param.getProperty("MicrosoftWebDriver"));
+			System.setProperty("webdriver.edge.driver", Param.getProperty("MicrosoftWebDriver"));
 			driver = new EdgeDriver();
 			logger.info("IE Driver Instance loaded successfully.");
 		}	

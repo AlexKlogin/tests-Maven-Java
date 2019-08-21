@@ -18,22 +18,24 @@ public class CheckBoxTest extends SuiteBase{
 	  public void beginWith() {
 		   driver.get(basicURL);
 		   driver.findElement(By.xpath(".//a[contains(text(),'Table With Checkbox')]")).click();
-	  }
+		  }
 	  
  	  
 	  @Test
-	  public void frame1Test() throws InterruptedException {
-		    
+	  public void selectCheckBoxTest() throws InterruptedException {
 		    driver.findElement(By.xpath("//td[contains(text(),'Cat')]/../td/input")).click();
-		    driver.findElement(By.xpath("//td[contains(text(),'Cat')]/../td/input")).click();
-		    boolean x = driver.findElement(By.xpath("//td[contains(text(),'Cat')]/../td/input")).isSelected();
-		   // logger.debug("Taking text from //h3[@class='post-title entry-title'] element. Result is: " + frame1InnerText);
-		   // assertEquals("Table With Checkbox", frame1InnerText);
-		    
+		    boolean isSelected = driver.findElement(By.xpath("//td[contains(text(),'Cat')]/../td/input")).isSelected();
+		    logger.debug("Taking result from checkbox //td[contains(text(),'Cat')]/../td/input element after selecting. Result is: " + isSelected);
+		    assertEquals(isSelected, true);
 	  }
 	  
-	  
-	  
+	  @Test(dependsOnMethods={"selectCheckBoxTest"})
+	  public void unSselectCheckBoxTest() throws InterruptedException {
+		    driver.findElement(By.xpath("//td[contains(text(),'Cat')]/../td/input")).click();
+		    boolean isSelected = driver.findElement(By.xpath("//td[contains(text(),'Cat')]/../td/input")).isSelected();
+		    logger.debug("Taking result from checkbox //td[contains(text(),'Cat')]/../td/input element after deselecting. Result is: " + isSelected);
+		    assertEquals(isSelected, false);
+	  } 
 	  
 	  @AfterClass
 	  public void endWith() {
